@@ -1,3 +1,5 @@
+<Tooltip message = {TooltipData.mainUser}><Icon circular name='info' size='small' /></Tooltip> 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

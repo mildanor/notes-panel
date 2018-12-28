@@ -1,32 +1,44 @@
-.App {
-  text-align: center;
-}
+/* The sidebar menu */
+.sidenav {
+  height: 100%;
+  width: 60px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 20px; }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* The navigation menu links */
+.sidenav p {
+  padding: 1px 1px 1px 1px;
+  text-decoration: none;
+  font-size: 15px;
   color: white;
-}
+  display: block; }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.sidenav p:hover {
+  color: lightgrey;
+  cursor: pointer; }
+
+
+.main {
+  margin-left: 60px;
+  /* Same as the width of the sidebar */
+  padding: 0px 10px; }
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px; }
+  .sidenav a {
+    font-size: 18px; } }
+
+.cursorEdit {
+  cursor: pointer; }
+
+.cursorEdit:hover {
+  color: red; }
