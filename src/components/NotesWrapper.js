@@ -12,7 +12,9 @@ class NotesWrapper extends React.Component {
         this.handleChangeDateEdit = this.handleChangeDateEdit.bind(this);
         this.handleChangeDetailsEdit = this.handleChangeDetailsEdit.bind(this);
 		this.handleNoteAdd = this.handleNoteAdd.bind(this);
-		this.handleNoteUpdate = this.handleNoteUpdate.bind(this);
+        this.handleNoteUpdate = this.handleNoteUpdate.bind(this);
+        //From parent
+        this.onHideNotesPanel= this.onHideNotesPanel.bind(this);
 		this.state = {
             text: "",
             date: "",
@@ -77,10 +79,15 @@ class NotesWrapper extends React.Component {
             details: "",
 			isEdit: 0
 		});
+    }
+    
+    onHideNotesPanel(e) {
+		this.props.handleHideNotes(e);
 	}
 	render() {
 		return (
             <div>
+            <p onClick={this.onHideNotesPanel} className="close-button"></p>
             <EditNote
 					onNoteAdd={this.handleNoteAdd}
 					//text={ this.state.text }

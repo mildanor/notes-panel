@@ -14,7 +14,7 @@ class App extends Component {
     this.hideNotes = this.hideNotes.bind(this);
 } 
 
-hideNotes(){
+hideNotes(event){
   this.setState({
     notesDisplayed: false,
   });
@@ -35,10 +35,11 @@ showNotes(){
         <p>Item 1</p>
         <p>Item 2</p>
         <p>Notes</p>
-        <p onClick={this.hideNotes}>hey</p>
       </div>
       <div className="main">
-      <NotesWrapper/>
+      <NotesWrapper
+      handleHideNotes={this.hideNotes}
+      />
       </div>
         </div>
       );
