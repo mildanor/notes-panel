@@ -13,25 +13,31 @@ class NotesWrapper extends React.Component {
         this.handleChangeDetailsEdit = this.handleChangeDetailsEdit.bind(this);
 		this.handleNoteAdd = this.handleNoteAdd.bind(this);
         this.handleNoteUpdate = this.handleNoteUpdate.bind(this);
+        this.handleresetUpdate = this.handleresetUpdate.bind(this);
+        this.handleRemoveNote = this.handleRemoveNote.bind(this);
         //From parent
         this.onHideNotesPanel= this.onHideNotesPanel.bind(this);
 		this.state = {
             text: "",
             date: "",
             details: "",
-			isEdit: 0,
-		    allNotes: content
+			isEdit: 100,
+            allNotes: content,
+            addOrEdit: 'Add note'
 		};
 	}
-
+//this function sets the state with note values
 	handleEditNote(item) {
 		this.setState({
             text: item.text,
             date: item.date,
             details: item.details,
-			isEdit: item.id
+            isEdit: item.id,
+            addOrEdit: 'Edit note'
 		});
-	}
+    }
+    //then the rest of the editing can happen
+
 	handleChangeTextEdit(text) {
         this.setState({ 
             text: text,
@@ -48,7 +54,8 @@ class NotesWrapper extends React.Component {
         this.setState({ 
             details: details
          });
-	}
+    }
+    //Math.floor(Math.random() *10) + 10,
 	handleNoteAdd(text, date, details) {
 		var newText = {
 			id: this.state.allNotes.length + 1,
@@ -61,7 +68,8 @@ class NotesWrapper extends React.Component {
 			allNotes: this.state.allNotes.concat(newText),
             text: "",
             date: "",
-            details: ""
+            details: "",
+            addOrEdit: 'Add note'
 		});
 	}
 	handleNoteUpdate(note) {
@@ -77,13 +85,34 @@ class NotesWrapper extends React.Component {
             text: "",
             date: "",
             details: "",
-			isEdit: 0
+            isEdit: 100,
+            addOrEdit: 'Add note'
 		});
     }
     
     onHideNotesPanel(e) {
 		this.props.handleHideNotes(e);
-	}
+    }
+    
+    handleresetUpdate(e){
+        this.setState({
+            text: "",
+            date: "",
+            details: "",
+            isEdit: 100,
+            addOrEdit: 'Add note'
+		});
+    }
+
+    handleRemoveNote(item){
+        let allNotes = this.state.allNotes.slice();
+            allNotes.splice(item.id-1, 1);
+            this.setState({
+            allNotes
+        });
+        console.log(allNotes);
+    }
+
 	render() {
 		return (
             <div>
@@ -95,13 +124,15 @@ class NotesWrapper extends React.Component {
                     changeTextEdit={this.handleChangeTextEdit}
                     changeDateEdit={this.handleChangeDateEdit}
                     changeDetailsEdit={this.handleChangeDetailsEdit}
-					onNoteUpdate={this.handleNoteUpdate}
+                    onNoteUpdate={this.handleNoteUpdate}
+                    resetUpdate={this.handleresetUpdate}
 					/>
 				<ListNotes
 					notesList={this.state.allNotes}
-					editNote={this.handleEditNote}
+                    editNote={this.handleEditNote}
+                    removeNote={this.handleRemoveNote}
 					/>
-				<hr />
+				
 				
 			</div>
 		);
@@ -110,29 +141,3 @@ class NotesWrapper extends React.Component {
 
 
 export default NotesWrapper;
-
-/*
-class NotesWrapper extends Component {
-constructor(){
-    super();
-    this.state = Object.assign({
-        notesData: content
-    });
-}
-
-  render() {
-    //let { notesData } = this.state;
-    return (
-      <div className = "notes-wrapper">
-      {this.state.notesData.map((item, i) => 
-        <Note key={i} item={item} />      
-     )
-    }
-    <button> Add note</button>
-      </div>
-    );
-  }
-}
-
-export default NotesWrapper;
-*/

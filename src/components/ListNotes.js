@@ -1,8 +1,12 @@
 import React, { Component }  from 'react';
+import { Icon } from 'semantic-ui-react'
 
 class ListNotes extends React.Component {
 	editNote(item) {
 		this.props.editNote(item);
+	}
+	removeNote(item){
+		this.props.removeNote(item);
 	}
 	render() {
 		let notesList = this.props.notesList;
@@ -14,7 +18,9 @@ class ListNotes extends React.Component {
                         <li key={item.id}>
 							<p className="cursorEdit" onClick={this.editNote.bind(this, item)}>
                                 {item.text} Due by: {item.date}
-                            </p>
+							</p>
+							<button onClick={this.removeNote.bind(this, item)}>Remove </button>
+							<Icon name= 'trash'/>
 						</li>
 					))}
 				</ul>

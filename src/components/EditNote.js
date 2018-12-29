@@ -7,7 +7,13 @@ class EditNote extends React.Component {
         this.onChangeEditDate = this.onChangeEditDate.bind(this);
         this.onChangeEditDetails= this.onChangeEditDetails.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.onReset = this.onReset.bind(this);
 	}
+
+	onReset(e){
+		this.props.resetUpdate(e);
+	}
+
 	onSubmit(e) {
 		e.preventDefault();
         var text = this.refs.text.value.trim();
@@ -45,7 +51,7 @@ class EditNote extends React.Component {
 	render() {
 		return (
 			<div>
-				<h1>Edit or add note</h1>
+				<h1>{this.props.addOrEdit}</h1>
 				<form onSubmit={this.onSubmit}>
 					<label>
 						Title:
@@ -78,8 +84,9 @@ class EditNote extends React.Component {
 							onChange={this.onChangeEditDate}
 							required
 							/>
-						<input type="submit" value="submit" />
+						<input type="submit" value="Submit" />
 					</label>
+					<button onClick={this.onReset}>Cancel</button>
 				</form>
 			</div>
 		);
