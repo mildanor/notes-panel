@@ -1,0 +1,45 @@
+label{
+    display: block;
+    margin-left: 5px;
+  }
+
+  button {
+    margin: 5px 5px 5px 5px;
+    padding: 5px 15px 5px 15px;
+    border: none;
+  }
+  
+  button:hover{
+    background-color: grey;
+    cursor: pointer;
+  }
+  
+  .submit{
+  background-color: black;
+  color:white;
+  }
+  
+  .Delete{
+    background-color: red;
+    color:white;
+  }
+
+  input{
+    margin-right:5px !important;
+    margin-left: 5px;
+    margin-bottom:5px;
+    padding: 5px 5px 5px 5px;
+    display:block;
+    width: 300px;
+    border:none;
+  }
+  
+  textarea{
+    width: 300px;
+    border:none;
+    margin-left: 5px;
+  }
+  
+  .form-input{
+    height: 200px;
+  }

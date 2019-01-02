@@ -1,99 +1,137 @@
 html {
   font-size: 62.5%; }
 
-.notes-wrapper {
+h2 {
+  font-size: 2.6rem; }
+
+h3 {
+  font-size: 1.9rem; }
+
+i.inverted.circular.grey.icon:hover {
+  background-color: red !important; }
+
+i.inverted.circular.grey.icon {
+  margin-bottom: 15px; }
+
+i.inverted.circular.red.icon:hover {
+  background-color: black !important; }
+
+i.inverted.circular.red.icon {
+  margin-bottom: 6px;
+  position: relative;
+  top: 15px;
+  left: 330px;
+  display: block; }
+
+i.small.icon, i.small.icons {
+  line-height: 1;
+  font-size: 0.85em !important; }
+
+i.inverted.circular.black.icon:hover {
+  background-color: red !important; }
+
+i.inverted.circular.black.icon {
+  margin-right: 8px; }
+
+/* The sidebar menu */
+.sidenav {
+  height: 100%;
+  width: 50px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 20px;
+  padding-left: 2px;
+  padding-right: 2px; }
+
+/* The navigation menu links */
+.sidenav p {
+  padding: 1px 1px 1px 1px;
+  text-decoration: none;
+  font-size: 15px;
+  color: white;
+  display: block; }
+
+/* When you mouse over the navigation links, change their color */
+.sidenav p:hover {
+  color: lightgrey;
+  cursor: pointer; }
+
+.date-display {
+  font-size: 11px;
+  font-weight: 800;
+  margin-top: 3px;
+  margin-bottom: 3px; }
+
+.note-style {
+  margin-left: 5px; }
+
+.note-style:hover {
+  cursor: pointer;
+  color: red; }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.notes-filter {
+  width: 250px !important;
+  margin-left: 3px;
+  margin-bottom: 20px; }
+
+.Notes-list {
+  display: block;
+  margin-bottom: 19px;
+  font-size: 15px;
+  padding: 5px 5px 5px 5px;
+  margin-right: 9px; }
+
+.notes-background {
+  background: #ffedef;
+  padding-left: 20px;
+  width: 400px;
+  padding-bottom: 20px;
+  box-shadow: 3px 6px #888888; }
+
+label {
+  display: block;
+  margin-left: 5px; }
+
+button {
+  margin: 5px 5px 5px 5px;
+  padding: 5px 15px 5px 15px;
+  border: none; }
+
+button:hover {
+  background-color: grey;
+  cursor: pointer; }
+
+.submit {
+  background-color: black;
+  color: white; }
+
+.Delete {
   background-color: red;
-  margin-left: 400px;
-  z-index: 100; }
+  color: white; }
 
-.tooltip {
-  position: relative; }
+input {
+  margin-right: 5px !important;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  padding: 5px 5px 5px 5px;
+  display: block;
+  width: 300px;
+  border: none; }
 
-.tooltip-trigger {
-  display: inline-block;
-  text-decoration: underline; }
+textarea {
+  width: 300px;
+  border: none;
+  margin-left: 5px; }
 
-.tooltip-bubble {
-  min-width: 220px;
-  max-width: 310px;
-  position: absolute;
-  z-index: 10; }
-  .tooltip-bubble::after {
-    content: '';
-    position: absolute; }
-
-.tooltip-right {
-  top: 50%;
-  left: 100%;
-  padding-left: 9px;
-  transform: translateY(-50%); }
-  .tooltip-right::after {
-    border-right: 9px solid rgba(0, 0, 0, 0.7);
-    border-top: 9px solid transparent;
-    border-bottom: 9px solid transparent;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%); }
-
-.tooltip-message {
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 3px;
-  color: #fff;
-  font-size: 1.2rem;
-  line-height: 1.4;
-  padding: .75em;
-  text-align: center; }
-
-/*
-
-Unused tooltip position styles after experiments
-
-.tooltip-top {
-  bottom: 100%;
-  left: 50%;
-  padding-bottom: 9px;
-  transform: translateX(-50%);
-  
-  &::after {
-    border-left: 9px solid transparent;
-    border-right: 9px solid transparent;
-    border-top: 9px solid $tooltip-color;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-.tooltip-bottom {
-  top: 100%;
-  left: 50%;
-  padding-top: 9px;
-  transform: translateX(-50%);
-  
-  &::after {
-    border-left: 9px solid transparent;
-    border-right: 9px solid transparent;
-    border-bottom: 9px solid $tooltip-color;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-.tooltip-left {
-  top: 50%;
-  right: 100%;
-  padding-right: 9px;
-  transform: translateY(-50%);
-  
-  &::after {
-    border-left: 9px solid $tooltip-color;
-    border-top: 9px solid transparent;
-    border-bottom: 9px solid transparent;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-  }
-}
-
-*/
+.form-input {
+  height: 200px; }

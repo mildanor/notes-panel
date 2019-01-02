@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React  from 'react';
 
 class EditNote extends React.Component {
 	constructor(props) {
@@ -8,6 +8,7 @@ class EditNote extends React.Component {
         this.onChangeEditDetails= this.onChangeEditDetails.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onReset = this.onReset.bind(this);
+		this.removeNote = this.removeNote.bind(this);
 	}
 
 	onReset(e){
@@ -19,12 +20,7 @@ class EditNote extends React.Component {
         var text = this.refs.text.value.trim();
         var date = this.refs.date.value.trim();
         var details = this.refs.details.value.trim();
-/*
-		if (!text) {
-			alert("This field cannot be empty");
-			return;
-		}
-*/
+
 		if (this.props.isEdit) {
 			var updateNote= {
 				id: this.props.isEdit,
@@ -33,10 +29,10 @@ class EditNote extends React.Component {
                 details: details
 			};
 			this.props.onNoteUpdate(updateNote);
-			console.log("is Updated");
+			//console.log("is Updated");
 		} else {
 			this.props.onNoteAdd(text, date, details);
-			console.log('is Created');
+			//console.log('is Created');
 		}
 	}
 	onChangeTextEdit(e) {
@@ -48,48 +44,100 @@ class EditNote extends React.Component {
     onChangeEditDetails(e) {
 		this.props.changeDetailsEdit(e.target.value);
 	}
+
+	removeNote(){
+		var removingNote = {
+			id: this.props.id
+		}
+		this.props.removeNote(removingNote);
+	}
+
 	render() {
-		return (
-			<div>
-				<h1>{this.props.addOrEdit}</h1>
-				<form onSubmit={this.onSubmit}>
-					<label>
-						Title:
-						<input
-							type="text"
-							placeholder="Add note"
-                            ref="text"
-                            name='text'
-							value={this.props.text}
-							onChange={this.onChangeTextEdit}
-							required
-                            />
-                            Details:
-                            <input
-							type="text"
-							placeholder="Details"
-                            ref="details"
-                            name='details'
-							value={this.props.details}
-							onChange={this.onChangeEditDetails}
-							required
-                            />
-                            Due by:
-                            <input
-							type="text"
-							placeholder="Date"
-                            ref="date"
-                            name= "date"
-							value={this.props.date}
-							onChange={this.onChangeEditDate}
-							required
-							/>
-						<input type="submit" value="Submit" />
-					</label>
-					<button onClick={this.onReset}>Cancel</button>
-				</form>
-			</div>
-		);
+		if (this.props.isEdit) {
+			return (
+				<div className="note-form">
+					<h1>{this.props.addOrEdit}</h1>
+					<form>
+							<input
+								type="text"
+								placeholder="Note"
+								ref="text"
+								name='text'
+								value={this.props.text}
+								onChange={this.onChangeTextEdit}
+								required
+								/>
+								
+								<textarea
+								type="text"
+								className="form-input"
+								placeholder="Additional Details"
+								ref="details"
+								name='details'
+								value={this.props.details}
+								onChange={this.onChangeEditDetails}
+								required
+								/>
+							   <label>Due by:</label> 
+								<input
+								type="date"
+								placeholder="Date"
+								ref="date"
+								name= "date"
+								value={this.props.date}
+								onChange={this.onChangeEditDate}
+								required
+								/>
+							
+						
+						<button className ="submit" onClick={this.onSubmit}>Submit</button>
+						<button className ="cancel" onClick={this.onReset}>Cancel</button>
+						<button className ="Delete" onClick={this.removeNote}>Delete</button>
+					</form>
+				</div>
+			)
+		} else {
+			return (
+				<div className="note-form">
+					<h1>{this.props.addOrEdit}</h1>
+					<form>
+							<input
+								type="text"
+								placeholder="Note"
+								ref="text"
+								name='text'
+								value={this.props.text}
+								onChange={this.onChangeTextEdit}
+								required
+								/>
+								
+								<textarea
+								type="text"
+								className="form-input"
+								placeholder="Additional Details"
+								ref="details"
+								name='details'
+								value={this.props.details}
+								onChange={this.onChangeEditDetails}
+								required
+								/>
+							   <label>Due by:</label> 
+								<input
+								type="date"
+								placeholder="Date"
+								ref="date"
+								name= "date"
+								value={this.props.date}
+								onChange={this.onChangeEditDate}
+								required
+								/>
+						<button className ="submit" onClick={this.onSubmit}>Submit</button>
+						<button className ="cancel" onClick={this.onReset}>Cancel</button>
+					</form>
+				</div>
+			)
+		}
+		
 	}
 }
 

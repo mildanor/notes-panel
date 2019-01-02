@@ -1,4 +1,10 @@
-<Tooltip message = {TooltipData.mainUser}><Icon circular name='info' size='small' /></Tooltip> 
+## To run the project
+
+Make sure you have node.js and npm installed. Then:
+
+* Git clone
+* npm install
+* npm start
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

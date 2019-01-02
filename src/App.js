@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import Tooltip from './components/Tooltip';
+import './styles/styles.css';
 import NotesWrapper from './components/NotesWrapper';
-import { Icon } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react';
 
 class App extends Component {
   constructor(){
     super();
     this.state = Object.assign({
-        //noteSelected: null,
         notesDisplayed: false
     });
     this.showNotes = this.showNotes.bind(this);
@@ -33,9 +32,9 @@ showNotes(){
       return (
         <div className="App">
         <div className="sidenav">
-        <p>Item 1</p>
-        <p>Item 2</p>
-        <Icon circular inverted color='red' name='write' size='small'/>
+        <Icon circular inverted color='grey' name='home' size='large' className="menu-icon"/>
+        <Icon circular inverted color='grey' name='cog' size='large' className="menu-icon"/>
+        <Icon circular inverted color='grey' name='write' size='large' className="menu-icon"/>
       </div>
       <div className="main">
       <NotesWrapper
@@ -48,9 +47,9 @@ showNotes(){
       return (
         <div className="App">
       <div className="sidenav">
-      <p>Item 1</p>
-      <p>Item 2</p>
-      <p onClick={this.showNotes}> Notes </p>
+      <Icon circular inverted color='grey' name='home' size='large' className="menu-icon"/> 
+      <Icon circular inverted color='grey' name='cog' size='large' className="menu-icon"/>
+      <Icon onClick={this.showNotes} circular inverted color='grey' name='write' size='large' className="menu-icon"/>
     </div>
     <div className="main">
     </div>
