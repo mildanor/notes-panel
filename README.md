@@ -1,4 +1,8 @@
-## To run the project
+## Published version:
+
+https://mildanor.github.io/notes-panel/
+
+## To run the project locally
 
 Make sure you have node.js and npm installed. Then:
 
