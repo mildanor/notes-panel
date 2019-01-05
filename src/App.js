@@ -7,9 +7,9 @@ import { Icon } from 'semantic-ui-react';
 class App extends Component {
   constructor(){
     super();
-    this.state = Object.assign({
+    this.state = {
         notesDisplayed: false
-    });
+    };
     this.showNotes = this.showNotes.bind(this);
     this.hideNotes = this.hideNotes.bind(this);
 } 
