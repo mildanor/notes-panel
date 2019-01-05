@@ -16,9 +16,9 @@ class NotesWrapper extends React.Component {
         this.handleNoteUpdate = this.handleNoteUpdate.bind(this);
         this.handleresetUpdate = this.handleresetUpdate.bind(this);
         this.handleRemoveNote = this.handleRemoveNote.bind(this);
+        this.addNoteMode=this.addNoteMode.bind(this);
         //From parent
         this.onHideNotesPanel= this.onHideNotesPanel.bind(this);
-        this.addNoteMode=this.addNoteMode.bind(this);
 		this.state = {
             text: "",
             date: "",
@@ -26,7 +26,7 @@ class NotesWrapper extends React.Component {
 			isEdit: 0,
             allNotes: content,
             addOrEdit: 'Add note',
-            currentMode:'Display'
+            currentModeEdit: false
 		};
 	}
 //this function sets the state with note values
@@ -37,7 +37,7 @@ class NotesWrapper extends React.Component {
             details: item.details,
             isEdit: item.id,
             addOrEdit: 'Edit note',
-            currentMode: 'Edit'
+            currentModeEdit: true
 		});
     }
     //then the rest of the editing can happen
@@ -72,13 +72,13 @@ class NotesWrapper extends React.Component {
             date: "",
             details: "",
             addOrEdit: 'Add note',
-            currentMode:'Display'
+            currentModeEdit: false
 		});
 	}
 	handleNoteUpdate(note) {
 		var allNotes = this.state.allNotes;
 		for (var i = 0; i < allNotes.length; i++) {
-			if (allNotes[i].id == note.id) {
+			if (allNotes[i].id === note.id) {
 				allNotes.splice(i, 1);
 			}
 		}
@@ -90,7 +90,7 @@ class NotesWrapper extends React.Component {
             details: "",
             isEdit: 0,
             addOrEdit: 'Add note',
-            currentMode:'Display'
+            currentModeEdit: false
 		});
     }
     
@@ -105,7 +105,7 @@ class NotesWrapper extends React.Component {
             details: "",
             isEdit: 0,
             addOrEdit: 'Add note',
-            currentMode:'Display'
+            currentModeEdit: false
 		});
     }
 
@@ -119,54 +119,42 @@ class NotesWrapper extends React.Component {
             details: "",
             isEdit: 0,
             addOrEdit: 'Add note',
-            currentMode:'Display'
+            currentModeEdit: false
         });
         //console.log(allNotes);
     }
 
-    addNoteMode(){
+    addNoteMode(e){
         this.setState({
-            currentMode: 'Edit'
+            currentModeEdit: true
 		});
     }
 
 	render() {
-        const {currentMode} = this.state;
-        if (currentMode === "Edit")
-        {
             return (
                 <div className="notes-background">
                 <Icon onClick={this.onHideNotesPanel} circular inverted color='red' name='close' size='small' className="close-icon"/>
+               {this.state.currentModeEdit ? 
                 <EditNote
-                        onNoteAdd={this.handleNoteAdd}
-                        {...this.state}
-                        changeTextEdit={this.handleChangeTextEdit}
-                        changeDateEdit={this.handleChangeDateEdit}
-                        changeDetailsEdit={this.handleChangeDetailsEdit}
-                        onNoteUpdate={this.handleNoteUpdate}
-                        resetUpdate={this.handleresetUpdate}
-                        removeNote={this.handleRemoveNote}
-                        />
+                onNoteAdd={this.handleNoteAdd}
+                {...this.state}
+                changeTextEdit={this.handleChangeTextEdit}
+                changeDateEdit={this.handleChangeDateEdit}
+                changeDetailsEdit={this.handleChangeDetailsEdit}
+                onNoteUpdate={this.handleNoteUpdate}
+                resetUpdate={this.handleresetUpdate}
+                removeNote={this.handleRemoveNote}
+                />
+                :
+                <ListNotes
+                notesList={this.state.allNotes}
+                editNote={this.handleEditNote}
+                addNote={this.addNoteMode} 
+                />   
+            }
+                       
                 </div>
             );
-        } else {
-            return (
-                <div className="notes-background">
-                <Icon onClick={this.onHideNotesPanel} circular inverted color='red' name='close' size='small' className="close-icon"/>
-                <h2 className="title">Notes</h2>
-                <h3><Icon onClick={this.addNoteMode} circular inverted color='black' name='add circle' size='small'/>Add Note</h3>
-                <input
-                type="text"
-                placeholder="Filter notes"
-                className="notes-filter"
-                ></input>
-                <ListNotes
-                        notesList={this.state.allNotes}
-                        editNote={this.handleEditNote}
-                        />   
-                </div> 
-            )
-        }
 		
 	}
 }

@@ -53,7 +53,6 @@ class EditNote extends React.Component {
 	}
 
 	render() {
-		if (this.props.isEdit) {
 			return (
 				<div className="note-form">
 					<h1>{this.props.addOrEdit}</h1>
@@ -92,53 +91,11 @@ class EditNote extends React.Component {
 						
 						<button className ="submit" onClick={this.onSubmit}>Submit</button>
 						<button className ="cancel" onClick={this.onReset}>Cancel</button>
-						<button className ="Delete" onClick={this.removeNote}>Delete</button>
+						{ this.props.isEdit ? <button className ="Delete" onClick={this.removeNote}>Delete</button> : null }
 					</form>
 				</div>
 			)
-		} else {
-			return (
-				<div className="note-form">
-					<h1>{this.props.addOrEdit}</h1>
-					<form>
-							<input
-								type="text"
-								placeholder="Note"
-								ref="text"
-								name='text'
-								value={this.props.text}
-								onChange={this.onChangeTextEdit}
-								required
-								/>
-								
-								<textarea
-								type="text"
-								className="form-input"
-								placeholder="Additional Details"
-								ref="details"
-								name='details'
-								value={this.props.details}
-								onChange={this.onChangeEditDetails}
-								required
-								/>
-							   <label>Due by:</label> 
-								<input
-								type="date"
-								placeholder="Date"
-								ref="date"
-								name= "date"
-								value={this.props.date}
-								onChange={this.onChangeEditDate}
-								required
-								/>
-						<button className ="submit" onClick={this.onSubmit}>Submit</button>
-						<button className ="cancel" onClick={this.onReset}>Cancel</button>
-					</form>
-				</div>
-			)
-		}
-		
-	}
+		} 
 }
 
 export default EditNote;

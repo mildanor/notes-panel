@@ -1,8 +1,17 @@
 import React from 'react';
+import { Icon } from 'semantic-ui-react';
 
 class ListNotes extends React.Component {
+	constructor(props) {
+		super(props);
+        this.addNote = this.addNote.bind(this);
+	}
 	editNote(item) {
 		this.props.editNote(item);
+	}
+
+	addNote(e){
+		this.props.addNote(e);
 	}
 	/*
 	removeNote(item){
@@ -13,6 +22,13 @@ class ListNotes extends React.Component {
 		let notesList = this.props.notesList;
 		return (
 			<div>
+			<h2 className="title">Notes</h2>
+			<h3><Icon onClick={this.addNote} circular inverted color='black' name='add circle' size='small'/>Add Note</h3>
+			<input
+			type="text"
+			placeholder="Filter notes"
+			className="notes-filter"
+			></input>
 				<ul>
 					{notesList.map(item => (
 						<li key={item.id}>

@@ -28,35 +28,29 @@ showNotes(){
 
   render() {
     let { notesDisplayed } = this.state;
-    if (notesDisplayed === true) {
       return (
         <div className="App">
         <div className="sidenav">
         <Icon circular inverted color='grey' name='home' size='large' className="menu-icon"/>
         <Icon circular inverted color='grey' name='cog' size='large' className="menu-icon"/>
-        <Icon circular inverted color='grey' name='write' size='large' className="menu-icon"/>
+        {notesDisplayed ? 
+        <Icon onClick={this.hideNotes} circular inverted color='grey' name='write' size='large' className="menu-icon"/>
+        :
+        <Icon onClick={this.showNotes} circular inverted color='grey' name='write' size='large' className="menu-icon"/>
+        }
       </div>
       <div className="main">
-      <NotesWrapper
+      {notesDisplayed ? 
+        <NotesWrapper
       handleHideNotes={this.hideNotes}
       />
+      :
+      null
+      }
+      
       </div>
         </div>
       );
-    } else {
-      return (
-        <div className="App">
-      <div className="sidenav">
-      <Icon circular inverted color='grey' name='home' size='large' className="menu-icon"/> 
-      <Icon circular inverted color='grey' name='cog' size='large' className="menu-icon"/>
-      <Icon onClick={this.showNotes} circular inverted color='grey' name='write' size='large' className="menu-icon"/>
-    </div>
-    <div className="main">
-    </div>
-      </div>
-      )
-    
-    }
   }
 }
 
